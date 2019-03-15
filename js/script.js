@@ -4,15 +4,23 @@
 /* global $ */
 
 $("#search-button").click(function(){
+    
     var input = $("#search-term").val();
         $.ajax({
         url: "https://api.giphy.com/v1/gifs/search?q=" + input + "&rating=pg&api_key=dc6zaTOxFJmzC",
         method: "GET",
         success: function(response){
-            var pic_url = response.data[0].images.original.url;
+            
+            var pic_url = response.data.forEach(function(element)
+            {
+                return (response.data);
+            }).images.original.url;
+            
             $(".text-center").html('<img src="' + pic_url + '"/>');
     
         }
     });
 });
 
+//var random = Math.floor(Math.random()*response.data.length);
+//response.data[random].images.original.url
